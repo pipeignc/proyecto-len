@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPerfumes — Fragancias de alta concentración</title>
+<meta name="description" content="UPerfumes: catálogo curado de eaus de parfum, elixires y extraits de alta concentración. Dior, Jean Paul Gaultier, Valentino, Paco Rabanne, Azzaro, Mancera y más.">
+
+<!-- Tipografías: Fraunces (display, serif) para titulares y Jost (sans geométrica) para texto de cuerpo y etiquetas -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<!-- Si el visitante tiene JavaScript desactivado, la cuadrícula del catálogo
+     (que normalmente aparece con una animación al hacer scroll) se muestra
+     directamente, sin depender del script. -->
+<noscript>
+  <style>
+    .perfume-card{ opacity: 1 !important; transform: none !important; }
+  </style>
+</noscript>
+
+<!-- Favicon simple en línea: inicial "U" sobre fondo oscuro, para no depender de un archivo aparte -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2314100D'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='30' fill='%23C6A15B' text-anchor='middle'%3EU%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<a class="skip-link" href="#coleccion">Saltar al catálogo</a>
+
+<!--
+  =========================================================================
+  ENCABEZADO
+  Barra fija que cambia de transparente a sólida al hacer scroll (ver script.js).
+  =========================================================================
+-->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#inicio" class="logo">UPerfumes</a>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="#coleccion">Colección</a>
+      <a href="#casa">La casa</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="siteNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!--
+    =======================================================================
+    HERO
+    Titular + ilustración de un frasco dibujada en SVG (línea, se "dibuja" 
+    sola al cargar la página). No requiere ninguna imagen del usuario:
+    es una ilustración decorativa, no un producto del catálogo.
+    =======================================================================
+  -->
+  <section class="hero" id="inicio">
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span class="reveal" style="--d:0">Fragancias que se quedan</span>
+        <span class="reveal" style="--d:1">cuando tú te vas.</span>
+      </h1>
+      <p class="hero-sub reveal" style="--d:2">
+        Una colección curada de eaus de parfum, elixires y extraits de alta
+        concentración — de casas como Dior y Jean Paul Gaultier a firmas
+        nicho como Mancera y Mykonos.
+      </p>
+      <a href="#coleccion" class="hero-cta reveal" style="--d:3">
+        Ver la colección
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+          <path d="M1 1L8 8L15 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Ilustración decorativa del frasco (línea SVG, se anima al cargar) -->
+    <svg class="hero-bottle reveal" style="--d:2" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="bottle-path" d="M95 40H125V65C125 65 145 78 145 105V300C145 311 136 320 125 320H95C84 320 75 311 75 300V105C75 78 95 65 95 65V40Z" stroke="currentColor" stroke-width="1.5"/>
+      <path class="bottle-path" d="M85 30H135V40H85V30Z" stroke="currentColor" stroke-width="1.5"/>
+      <path class="bottle-path" d="M75 140H145" stroke="currentColor" stroke-width="1"/>
+      <path class="bottle-path" d="M75 230H145" stroke="currentColor" stroke-width="1"/>
+      <path class="bottle-path" d="M110 8V30" stroke="currentColor" stroke-width="1.5"/>
+    </svg>
+
+    <button class="scroll-cue" id="scrollCue" aria-label="Bajar al catálogo" type="button">
+      <span></span>
+    </button>
+  </section>
+
+  <!--
+    =======================================================================
+    CIFRAS DE LA COLECCIÓN
+    Pequeño resumen numérico. Los números aumentan (count-up) una sola vez
+    cuando la sección entra en pantalla.
+    =======================================================================
+  -->
+  <section class="stats" aria-label="La colección en cifras">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-number" data-count="11">0</span>
+        <span class="stat-label">fragancias en catálogo</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-count="8">0</span>
+        <span class="stat-label">casas de perfumería</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number" data-count="6">0</span>
+        <span class="stat-label">familias olfativas</span>
+      </div>
+    </div>
+  </section>
+
+  <!--
+    =======================================================================
+    COLECCIÓN / CATÁLOGO
+    =======================================================================
+    INSTRUCCIONES GENERALES PARA LAS IMÁGENES (léelas antes de publicar):
+
+    1. Crea una carpeta llamada "images" en el mismo directorio donde están
+       index.html, styles.css y script.js.
+    2. Guarda cada foto de frasco con el nombre EXACTO indicado en el
+       comentario que precede a su etiqueta <img>, por ejemplo:
+           images/dior-sauvage-edt.jpg
+    3. Tamaño recomendado: 800 x 1000 px (proporción 4:5), fondo neutro o
+       transparente (PNG/WEBP si el frasco lleva fondo transparente).
+    4. No hace falta tocar el HTML: en cuanto el archivo exista con ese
+       nombre en la carpeta "images", la foto reemplaza automáticamente
+       al marcador de posición (el recuadro punteado con el ícono).
+    5. Si prefieres usar otros nombres de archivo, simplemente actualiza
+       el atributo "src" de cada <img> por la ruta que tú quieras.
+    =======================================================================
+  -->
+  <section class="collection" id="coleccion">
+    <div class="section-head">
+      <h2>La colección</h2>
+      <p>Once fragancias masculinas de alta concentración. Filtra por familia olfativa para encontrar el perfil que buscas.</p>
+    </div>
+
+    <div class="filters" id="filters" role="tablist" aria-label="Filtrar por familia olfativa">
+      <button class="filter-chip is-active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+      <button class="filter-chip" data-filter="citrico" role="tab" aria-selected="false">Cítrico</button>
+      <button class="filter-chip" data-filter="aromatico" role="tab" aria-selected="false">Aromático</button>
+      <button class="filter-chip" data-filter="amaderado" role="tab" aria-selected="false">Amaderado</button>
+      <button class="filter-chip" data-filter="floral" role="tab" aria-selected="false">Floral</button>
+      <button class="filter-chip" data-filter="oriental" role="tab" aria-selected="false">Oriental</button>
+      <button class="filter-chip" data-filter="gourmand" role="tab" aria-selected="false">Gourmand</button>
+    </div>
+
+    <div class="perfume-grid" id="perfumeGrid">
+
+      <!-- ============ 01 · DIOR SAUVAGE EDT ============ -->
+      <article class="perfume-card" data-family="aromatico">
+        <p class="perfume-card__index">N.º 01</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/dior-sauvage-edt.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/dior-sauvage-edt.jpg" alt="Frasco de Dior Sauvage EDT" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/dior-sauvage-edt.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Dior</p>
+          <h3 class="perfume-card__name">Sauvage <span class="badge">EDT</span></h3>
+          <p class="perfume-card__family">Aromática especiada</p>
+          <p class="perfume-card__desc">El punto de partida del fougère moderno: bergamota de Calabria luminosa sobre una base mineral de ambroxán. Fresca, directa y reconocible desde la primera aplicación.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> bergamota, pimienta · <strong>Corazón</strong> pimienta de Sichuan, lavanda, geranio · <strong>Fondo</strong> ambroxán, cedro, labdanum</p>
+        </div>
+      </article>
+
+      <!-- ============ 02 · PACO RABANNE INVICTUS VICTORY ELIXIR ============ -->
+      <article class="perfume-card" data-family="amaderado">
+        <p class="perfume-card__index">N.º 02</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/invictus-victory-elixir.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/invictus-victory-elixir.jpg" alt="Frasco de Paco Rabanne Invictus Victory Elixir" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/invictus-victory-elixir.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Paco Rabanne</p>
+          <h3 class="perfume-card__name">Invictus Victory <span class="badge">Elixir</span></h3>
+          <p class="perfume-card__family">Ambarada especiada</p>
+          <p class="perfume-card__desc">La versión más densa de Invictus: cardamomo verde y pimienta negra se funden con incienso y pachulí antes de asentarse en una base espesa de vainilla y haba tonka.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> lavandina, cardamomo verde, pimienta negra · <strong>Corazón</strong> incienso, pachulí · <strong>Fondo</strong> vainilla, haba tonka</p>
+        </div>
+      </article>
+
+      <!-- ============ 03 · DIOR HOMME INTENSE ============ -->
+      <article class="perfume-card" data-family="floral">
+        <p class="perfume-card__index">N.º 03</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/dior-homme-intense.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/dior-homme-intense.jpg" alt="Frasco de Dior Homme Intense" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/dior-homme-intense.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Dior</p>
+          <h3 class="perfume-card__name">Homme Intense <span class="badge">EDP</span></h3>
+          <p class="perfume-card__family">Floral amaderada</p>
+          <p class="perfume-card__desc">Una lectura poco convencional de la masculinidad: iris polvoriento y un toque de cacao sobre una base de cedro y vetiver. Elegante, cálida y ligeramente golosa.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> lavanda · <strong>Corazón</strong> iris, ambrette, pera · <strong>Fondo</strong> cedro de Virginia, vetiver</p>
+        </div>
+      </article>
+
+      <!-- ============ 04 · VALENTINO UOMO BORN IN ROMA EXTRADOSE ============ -->
+      <article class="perfume-card" data-family="amaderado">
+        <p class="perfume-card__index">N.º 04</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/valentino-born-in-roma-extradose.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/valentino-born-in-roma-extradose.jpg" alt="Frasco de Valentino Uomo Born in Roma Extradose" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/valentino-born-in-roma-extradose.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Valentino</p>
+          <h3 class="perfume-card__name">Uomo Born in Roma <span class="badge">Extradose</span></h3>
+          <p class="perfume-card__family">Fougère amaderada</p>
+          <p class="perfume-card__desc">La versión más intensa de Born in Roma: especias envolventes y lavandina sobre un fondo de vetiver y madera de guayaco, pensada para la noche.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> mezcla de especias, bergamota · <strong>Corazón</strong> lavandina · <strong>Fondo</strong> vetiver, madera de guayaco</p>
+        </div>
+      </article>
+
+      <!-- ============ 05 · JPG LE MALE ELIXIR ============ -->
+      <article class="perfume-card" data-family="oriental">
+        <p class="perfume-card__index">N.º 05</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/jpg-le-male-elixir.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/jpg-le-male-elixir.jpg" alt="Frasco de Jean Paul Gaultier Le Male Elixir" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/jpg-le-male-elixir.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Jean Paul Gaultier</p>
+          <h3 class="perfume-card__name">Le Male <span class="badge">Elixir</span></h3>
+          <p class="perfume-card__family">Oriental gourmand</p>
+          <p class="perfume-card__desc">La cara más golosa de Le Male: lavanda y menta al abrir, miel y benjuí en el corazón, y una base de vainilla, tabaco y pachulí que se queda horas en la piel.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> lavanda, menta, bergamota · <strong>Corazón</strong> benjuí, miel, haba tonka · <strong>Fondo</strong> vainilla, tabaco, pachulí</p>
+        </div>
+      </article>
+
+      <!-- ============ 06 · JPG LE BEAU LE PARFUM ============ -->
+      <article class="perfume-card" data-family="gourmand">
+        <p class="perfume-card__index">N.º 06</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/jpg-le-beau-le-parfum.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/jpg-le-beau-le-parfum.jpg" alt="Frasco de Jean Paul Gaultier Le Beau Le Parfum" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/jpg-le-beau-le-parfum.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Jean Paul Gaultier</p>
+          <h3 class="perfume-card__name">Le Beau <span class="badge">Le Parfum</span></h3>
+          <p class="perfume-card__family">Gourmand tropical</p>
+          <p class="perfume-card__desc">Piña y jengibre dan paso a un corazón de coco que domina toda la fragancia, apoyado por sándalo, ámbar y haba tonka. Una versión más madura del Le Beau original.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> piña, iris, jengibre, ciprés · <strong>Corazón</strong> coco, notas amaderadas · <strong>Fondo</strong> sándalo, haba tonka, ámbar</p>
+        </div>
+      </article>
+
+      <!-- ============ 07 · JPG LE MALE LE PARFUM ============ -->
+      <article class="perfume-card" data-family="oriental">
+        <p class="perfume-card__index">N.º 07</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/jpg-le-male-le-parfum.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/jpg-le-male-le-parfum.jpg" alt="Frasco de Jean Paul Gaultier Le Male Le Parfum" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/jpg-le-male-le-parfum.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Jean Paul Gaultier</p>
+          <h3 class="perfume-card__name">Le Male <span class="badge">Le Parfum</span></h3>
+          <p class="perfume-card__family">Oriental especiada</p>
+          <p class="perfume-card__desc">Cardamomo especiado, lavanda e iris se funden en una base de vainilla y madera. El equilibrio clásico de la línea Le Male, en una versión más densa.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> cardamomo · <strong>Corazón</strong> lavanda, iris · <strong>Fondo</strong> vainilla, notas amaderadas</p>
+        </div>
+      </article>
+
+      <!-- ============ 08 · MANCERA CEDRAT BOISE ============ -->
+      <article class="perfume-card" data-family="citrico">
+        <p class="perfume-card__index">N.º 08</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/mancera-cedrat-boise.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/mancera-cedrat-boise.jpg" alt="Frasco de Mancera Cedrat Boise" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/mancera-cedrat-boise.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Mancera</p>
+          <h3 class="perfume-card__name">Cedrat Boise <span class="badge">EDP</span></h3>
+          <p class="perfume-card__family">Cítrica amaderada</p>
+          <p class="perfume-card__desc">Cítricos de Sicilia y grosella negra abren paso a jazmín y pachulí, sobre una base de cedro, cuero y almizcle blanco. Fresca de día, envolvente al caer la tarde.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> limón siciliano, bergamota, grosella negra · <strong>Corazón</strong> jazmín, pachulí · <strong>Fondo</strong> cedro, cuero, sándalo, almizcle blanco</p>
+        </div>
+      </article>
+
+      <!-- ============ 09 · MYKONOS INCEPTION ============ -->
+      <article class="perfume-card" data-family="floral">
+        <p class="perfume-card__index">N.º 09</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/mykonos-inception.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/mykonos-inception.jpg" alt="Frasco de Mykonos Inception" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/mykonos-inception.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Mykonos</p>
+          <h3 class="perfume-card__name">Inception <span class="badge">EDP</span></h3>
+          <p class="perfume-card__family">Floral acuática</p>
+          <p class="perfume-card__desc">Naranja, jengibre y té negro sobre un fondo de cedro y almizcle. Una fragancia luminosa y fácil de llevar, pensada para climas cálidos.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> naranja, bergamota, jengibre, limón · <strong>Corazón</strong> té negro, canela, neroli · <strong>Fondo</strong> almizcle, cedro, madera de guayaco</p>
+        </div>
+      </article>
+
+      <!-- ============ 10 · AZZARO THE MOST WANTED EDP INTENSE ============ -->
+      <article class="perfume-card" data-family="gourmand">
+        <p class="perfume-card__index">N.º 10</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/azzaro-most-wanted-intense.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/azzaro-most-wanted-intense.jpg" alt="Frasco de Azzaro The Most Wanted EDP Intense" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/azzaro-most-wanted-intense.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">Azzaro</p>
+          <h3 class="perfume-card__name">The Most Wanted <span class="badge">EDP Intense</span></h3>
+          <p class="perfume-card__family">Amaderada gourmand</p>
+          <p class="perfume-card__desc">Cardamomo especiado que da paso a un corazón de toffee casi comestible, sobre una base de ámbar amaderado. Dulce, pero sin resultar empalagosa.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> cardamomo · <strong>Corazón</strong> toffee · <strong>Fondo</strong> ámbar amaderado</p>
+        </div>
+      </article>
+
+      <!-- ============ 11 · FRENCH AVENUE LIQUID BRUN ============ -->
+      <article class="perfume-card" data-family="oriental">
+        <p class="perfume-card__index">N.º 11</p>
+        <div class="perfume-card__image">
+          <!--
+            IMAGEN → guarda el archivo como: images/french-avenue-liquid-brun.jpg
+            Tamaño sugerido: 800×1000px
+          -->
+          <img src="images/french-avenue-liquid-brun.jpg" alt="Frasco de French Avenue Liquid Brun" loading="lazy">
+          <div class="image-placeholder">
+            <svg class="placeholder-icon" viewBox="0 0 48 64" fill="none" aria-hidden="true"><path d="M18 8H30V16C30 16 38 21 38 31V56C38 59 35.5 61 33 61H15C12.5 61 10 59 10 56V31C10 21 18 16 18 16V8Z" stroke="currentColor" stroke-width="1.4"/><path d="M15 4H33V8H15V4Z" stroke="currentColor" stroke-width="1.4"/></svg>
+            <p>Coloca aquí la imagen</p>
+            <code>images/french-avenue-liquid-brun.jpg</code>
+            <span>800 × 1000&nbsp;px sugerido</span>
+          </div>
+        </div>
+        <div class="perfume-card__body">
+          <p class="perfume-card__house">French Avenue</p>
+          <h3 class="perfume-card__name">Liquid Brun <span class="badge">EDP</span></h3>
+          <p class="perfume-card__family">Oriental especiada</p>
+          <p class="perfume-card__desc">Canela y cardamomo se encuentran con vainilla bourbon y praliné, sobre una base de ámbar y madera de guayaco. Cálida, dulce y de larga duración.</p>
+          <p class="perfume-card__notes"><strong>Salida</strong> canela, cardamomo, bergamota, azahar · <strong>Corazón</strong> vainilla bourbon, elemí · <strong>Fondo</strong> praliné, almizcle, ambroxán, madera de guayaco</p>
+        </div>
+      </article>
+
+    </div><!-- /.perfume-grid -->
+
+    <p class="filters-empty" id="filtersEmpty" hidden>No hay fragancias en esta familia todavía.</p>
+  </section>
+
+  <!--
+    =======================================================================
+    LA CASA
+    =======================================================================
+  -->
+  <section class="about" id="casa">
+    <div class="about-inner">
+      <p class="about-mark">UPerfumes</p>
+      <h2>La casa</h2>
+      <p>UPerfumes reúne una selección de fragancias masculinas de alta concentración: elixires, extraits y parfums intensos de casas como Dior, Jean Paul Gaultier, Valentino, Paco Rabanne y Azzaro, junto a firmas nicho como Mancera, Mykonos y French Avenue.</p>
+      <p>Cada botella de este catálogo representa una interpretación distinta de la intensidad — especiada, amaderada, ambarina o gourmand — pensada para quienes prefieren una fragancia que se note, que dure y que se recuerde.</p>
+    </div>
+    <div class="about-divider" aria-hidden="true">
+      <svg viewBox="0 0 400 40" preserveAspectRatio="none">
+        <path d="M0 20C50 5 100 35 150 20C200 5 250 35 300 20C350 5 400 20 400 20" stroke="currentColor" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+  </section>
+
+  <!--
+    =======================================================================
+    CONTACTO
+    Nota: hola@uperfumes.com y @uperfumes son marcadores de ejemplo.
+    Reemplázalos por tus datos reales de contacto.
+    =======================================================================
+  -->
+  <section class="contact" id="contacto">
+    <div class="contact-inner">
+      <h2>Contacto</h2>
+      <p>¿Buscas una fragancia en particular o quieres más información sobre alguna casa del catálogo? Escríbenos.</p>
+      <dl class="contact-list">
+        <div>
+          <dt>Correo</dt>
+          <dd><a href="mailto:hola@uperfumes.com">f.ignacio.altamirano@gmail.com</a></dd>
+        </div>
+        <div>
+          <dt>Instagram</dt>
+          <dd><a href="#" target="_blank" rel="noopener">@pipe_ignc</a></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a href="#inicio" class="logo small">UPerfumes</a>
+    <p>© 2026 UPerfumes. Todas las marcas y nombres de fragancias mencionados pertenecen a sus respectivos propietarios. UPerfumes no está afiliado a dichas casas de perfumería.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
